@@ -1,0 +1,37 @@
+queue_rules:
+  - name: default
+    conditions:
+      - "#approved-reviews-by>1"
+
+pull_request_rules:
+  - name: Automatic merge on approval
+    conditions:
+      - "#approved-reviews-by>=1"
+      - base=main
+      - label=A:Automerge
+    actions:
+      queue:
+        name: default
+      merge:
+        method: squash
+        commit_message_template: |
+          {{ title }} (#{{ number }})
+          {{ body }}
+
+  - name: Backport patches to the release/v3.x.x branch
+    conditions:
+      - base=main
+      - label=S:backport/v3.x.x
+    actions:
+      backport:
+        branches:
+          - release/v3.x.x
+
+  - name: Backport patches to the release/price-feeder/v1.x.x branch
+    conditions:
+      - base=main
+      - label=S:backport/price-feeder/v1.x.x
+    actions:
+      backport:
+        branches:
+          - release/price-feeder/v1.x.x

@@ -1,0 +1,34 @@
+build:
+  binary: "umeed"
+  main: "./cmd/umeed"
+genesis:
+  chain_id: "umee-local-testnet"
+  app_state:
+    staking:
+      params:
+        bond_denom: "uumee"
+    gravity:
+      delegate_keys:
+        - validator: "umeevaloper1zypqa76je7pxsdwkfah6mu9a583sju6xjettez"
+          orchestrator: "umee1zypqa76je7pxsdwkfah6mu9a583sju6xjavygg"
+          eth_address: "0x9fc56f2e851e1ab2b4c0fc4f6344800f29652ffe"
+accounts:
+  - name: alice
+    coins: ["39000000000000uumee"]
+    mnemonic: "entry garbage bike poem grunt negative easily annual miss happy license blur false fringe program picture inner tape dismiss eagle include quality drill master"
+  - name: bob
+    coins: ["5500000000000uumee"]
+  - name: faucet
+    coins: ["5500000000000uumee"]
+validator:
+  name: alice
+  staked: "33500000000000uumee"
+  eth_address: "0x9fc56f2e851e1ab2b4c0fc4f6344800f29652ffe"
+  orch_address: "umee1zypqa76je7pxsdwkfah6mu9a583sju6xjavygg"
+servers:
+  dev-ui-address: "localhost:12345"
+faucet:
+  port: 4500
+  name: "faucet"
+  coins: ["5500000000000uumee"]
+  coins_max: ["1000000000uumee"]
